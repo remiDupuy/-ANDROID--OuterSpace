@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Outer Space Manager</string>
+    <string name="menu_login">Inscription</string>
+    <string name="title_activity_sign_up">Inscription</string>
+</resources>
