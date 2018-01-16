@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         this.txtView_username = (TextView)findViewById(R.id.txtView_username);
+        
         this.txtView_username.setText(SharedPreferencesHelper.getPrefsName(getApplicationContext(), "username", null));
     }
 }
