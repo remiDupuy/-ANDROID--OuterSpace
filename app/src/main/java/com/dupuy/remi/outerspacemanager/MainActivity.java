@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView txtViewPoints;
 
     private Button btn_buildings;
+    private Button btn_flotte;
 
 
     @Override
@@ -63,6 +64,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btn_buildings = findViewById(R.id.btn_buildings);
         btn_buildings.setOnClickListener(this);
+
+        btn_flotte = findViewById(R.id.btn_flotte);
+        btn_flotte.setOnClickListener(this);
     }
 
     @Override
@@ -71,6 +75,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_buildings:
                 Intent iBuildings = new Intent(getApplicationContext(), BuildingsActivity.class);
                 startActivity(iBuildings);
+                break;
+
+            case R.id.btn_flotte:
+                Intent iFleet = new Intent(getApplicationContext(), FleetActivity.class);
+                startActivity(iFleet);
                 break;
         }
     }

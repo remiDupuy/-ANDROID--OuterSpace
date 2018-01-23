@@ -69,7 +69,8 @@ public class ViewBuildingActivity extends Activity {
                         @Override
                         public void onResponse(Call<ResponseCreateBuilding> call, retrofit2.Response<ResponseCreateBuilding> response) {
                             if(response.code() == 200) {
-                                Toast toast = Toast.makeText(getApplicationContext(), "Ajout réussi", Toast.LENGTH_SHORT);
+                                Toast toast = Toast.makeText(getApplicationContext(), "Création en cours", Toast.LENGTH_SHORT);
+                                toast.show();
                             } else {
                                 try {
                                     JSONObject jsonObj = new JSONObject(response.errorBody().string());

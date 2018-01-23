@@ -29,6 +29,10 @@
         <activity
             android:name=".ViewBuildingActivity"
             android:label="@string/title_activity_view_building"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".FleetActivity"
+            android:label="@string/title_activity_fleet"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

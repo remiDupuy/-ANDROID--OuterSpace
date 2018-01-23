@@ -9,4 +9,5 @@
     <string name="title_activity_view_building">ViewBuildingActivity</string>
     <string name="building_level">Building level :</string>
     <string name="amountOfEffectByLevel">Amount Of Effect By Level :</string>
+    <string name="title_activity_fleet">FleetActivity</string>
 </resources>

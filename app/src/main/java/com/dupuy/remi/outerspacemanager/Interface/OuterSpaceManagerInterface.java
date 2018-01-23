@@ -1,5 +1,6 @@
 package com.dupuy.remi.outerspacemanager.Interface;
 
+import com.dupuy.remi.outerspacemanager.Models.Fleet;
 import com.dupuy.remi.outerspacemanager.Models.ListingBuildings;
 import com.dupuy.remi.outerspacemanager.Models.Responses.Response;
 import com.dupuy.remi.outerspacemanager.Models.Responses.ResponseCreateBuilding;
@@ -31,4 +32,9 @@ public interface OuterSpaceManagerInterface {
 
     @POST("api/v1/buildings/create/{id}")
     Call<ResponseCreateBuilding> createBuilding(@Header("x-access-token") String token, @Path("id") int buildingId);
+
+    @GET("api/v1/fleet/list")
+    Call<Fleet> getFleetUser(@Header("x-access-token") String token);
+
+
 }
