@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView txtView_username;
 
     private TextView txtViewPoints;
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
