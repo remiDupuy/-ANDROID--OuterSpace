@@ -2,4 +2,11 @@
     <string name="app_name">Outer Space Manager</string>
     <string name="menu_login">Inscription</string>
     <string name="title_activity_sign_up">Inscription</string>
+    <string name="title_activity_buildings">BuildingsActivity</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Annuler</string>
+    <string name="confirm_create">Confirmez-vous la création du bâtiment ?</string>
+    <string name="title_activity_view_building">ViewBuildingActivity</string>
+    <string name="building_level">Building level :</string>
+    <string name="amountOfEffectByLevel">Amount Of Effect By Level :</string>
 </resources>

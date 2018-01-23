@@ -1,6 +1,8 @@
 package com.dupuy.remi.outerspacemanager.Interface;
 
+import com.dupuy.remi.outerspacemanager.Models.ListingBuildings;
 import com.dupuy.remi.outerspacemanager.Models.Responses.Response;
+import com.dupuy.remi.outerspacemanager.Models.Responses.ResponseCreateBuilding;
 import com.dupuy.remi.outerspacemanager.Models.User;
 
 import retrofit2.Call;
@@ -8,6 +10,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 /**
  * Created by rdupuy on 16/01/2018.
@@ -22,4 +25,10 @@ public interface OuterSpaceManagerInterface {
 
     @GET("api/v1/users/get")
     Call<User> getCurrentUser(@Header("x-access-token") String token);
+
+    @GET("api/v1/buildings/list")
+    Call<ListingBuildings> getBuildings(@Header("x-access-token") String token);
+
+    @POST("api/v1/buildings/create/{id}")
+    Call<ResponseCreateBuilding> createBuilding(@Header("x-access-token") String token, @Path("id") int buildingId);
 }
