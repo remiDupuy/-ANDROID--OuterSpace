@@ -2,6 +2,8 @@ package com.dupuy.remi.outerspacemanager.Interface;
 
 import com.dupuy.remi.outerspacemanager.Models.Fleet;
 import com.dupuy.remi.outerspacemanager.Models.ListingBuildings;
+import com.dupuy.remi.outerspacemanager.Models.ListingSearches;
+import com.dupuy.remi.outerspacemanager.Models.ListingShips;
 import com.dupuy.remi.outerspacemanager.Models.ListingUsers;
 import com.dupuy.remi.outerspacemanager.Models.Responses.Response;
 import com.dupuy.remi.outerspacemanager.Models.Responses.ResponseCreateBuilding;
@@ -41,4 +43,10 @@ public interface OuterSpaceManagerInterface {
 
     @GET("api/v1/fleet/list")
     Call<Fleet> getFleetUser(@Header("x-access-token") String token);
+
+    @GET("api/v1/ships")
+    Call<ListingShips> getShips(@Header("x-access-token") String token);
+
+    @GET("api/v1/searches/list")
+    Call<ListingSearches> getSearches(@Header("x-access-token") String token);
 }

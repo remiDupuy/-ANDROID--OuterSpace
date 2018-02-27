@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn_buildings;
     private Button btn_flotte;
     private Button btn_galaxy;
+    private Button btn_ships;
+    private Button btn_searches;
 
 
     @Override
@@ -71,6 +73,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btn_galaxy = findViewById(R.id.btn_galaxie);
         btn_galaxy.setOnClickListener(this);
+
+        btn_ships = findViewById(R.id.btn_chantier);
+        btn_ships.setOnClickListener(this);
+
+        btn_searches = findViewById(R.id.btn_searches);
+        btn_searches.setOnClickListener(this);
     }
 
     @Override
@@ -89,6 +97,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_galaxie:
                 Intent iGalaxy = new Intent(getApplicationContext(), GalaxyActivity.class);
                 startActivity(iGalaxy);
+                break;
+
+            case R.id.btn_chantier:
+                Intent iShips = new Intent(getApplicationContext(), ShipsActivity.class);
+                startActivity(iShips);
+                break;
+
+            case R.id.btn_searches:
+                Intent iSearches = new Intent(getApplicationContext(), SearchesActivity.class);
+                startActivity(iSearches);
                 break;
         }
     }

@@ -5,11 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.dupuy.remi.outerspacemanager.Models.Building;
+import com.dupuy.remi.outerspacemanager.Models.Search;
 import com.dupuy.remi.outerspacemanager.Models.Ship;
 import com.dupuy.remi.outerspacemanager.R;
 
@@ -19,10 +17,10 @@ import java.util.List;
  * Created by lledent on 23/01/2018.
  */
 
-public class ShipAdapter extends ArrayAdapter<Ship> {
+public class SearchesAdapter extends ArrayAdapter<Search> {
     private final Context context;
-    private final List<Ship> values;
-    public ShipAdapter(Context context, List<Ship> values) {
+    private final List<Search> values;
+    public SearchesAdapter(Context context, List<Search> values) {
         super(context, R.layout.fleet_adapter, values);
         this.context = context;
         this.values = values;

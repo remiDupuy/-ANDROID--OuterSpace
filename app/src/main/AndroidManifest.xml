@@ -37,7 +37,13 @@
         <activity
             android:name=".GalaxyActivity"
             android:label="@string/title_activity_galaxy"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ShipsActivity"
+            android:label="@string/title_activity_ships"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".SearchesActivity" />
+        <activity android:name=".SearchesDetailActivity" />
     </application>
 
 </manifest>
