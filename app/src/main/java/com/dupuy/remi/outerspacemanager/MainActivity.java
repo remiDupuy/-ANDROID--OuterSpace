@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button btn_buildings;
     private Button btn_flotte;
+    private Button btn_galaxy;
 
 
     @Override
@@ -67,6 +68,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btn_flotte = findViewById(R.id.btn_flotte);
         btn_flotte.setOnClickListener(this);
+
+        btn_galaxy = findViewById(R.id.btn_galaxie);
+        btn_galaxy.setOnClickListener(this);
     }
 
     @Override
@@ -80,6 +84,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_flotte:
                 Intent iFleet = new Intent(getApplicationContext(), FleetActivity.class);
                 startActivity(iFleet);
+                break;
+
+            case R.id.btn_galaxie:
+                Intent iGalaxy = new Intent(getApplicationContext(), GalaxyActivity.class);
+                startActivity(iGalaxy);
                 break;
         }
     }

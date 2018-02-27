@@ -33,6 +33,10 @@
         <activity
             android:name=".FleetActivity"
             android:label="@string/title_activity_fleet"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".GalaxyActivity"
+            android:label="@string/title_activity_galaxy"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

@@ -2,9 +2,12 @@ package com.dupuy.remi.outerspacemanager.Interface;
 
 import com.dupuy.remi.outerspacemanager.Models.Fleet;
 import com.dupuy.remi.outerspacemanager.Models.ListingBuildings;
+import com.dupuy.remi.outerspacemanager.Models.ListingUsers;
 import com.dupuy.remi.outerspacemanager.Models.Responses.Response;
 import com.dupuy.remi.outerspacemanager.Models.Responses.ResponseCreateBuilding;
 import com.dupuy.remi.outerspacemanager.Models.User;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -27,6 +30,9 @@ public interface OuterSpaceManagerInterface {
     @GET("api/v1/users/get")
     Call<User> getCurrentUser(@Header("x-access-token") String token);
 
+    @GET("api/v1/users/0/20")
+    Call<ListingUsers> getUsers(@Header("x-access-token") String token);
+
     @GET("api/v1/buildings/list")
     Call<ListingBuildings> getBuildings(@Header("x-access-token") String token);
 
@@ -35,6 +41,4 @@ public interface OuterSpaceManagerInterface {
 
     @GET("api/v1/fleet/list")
     Call<Fleet> getFleetUser(@Header("x-access-token") String token);
-
-
 }

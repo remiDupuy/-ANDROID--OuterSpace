@@ -7,18 +7,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dupuy.remi.outerspacemanager.Adapters.BuildingAdapter;
+import com.dupuy.remi.outerspacemanager.Adapters.GalaxyAdapter;
 import com.dupuy.remi.outerspacemanager.Adapters.ShipAdapter;
 import com.dupuy.remi.outerspacemanager.Interface.OuterSpaceManagerInterface;
 import com.dupuy.remi.outerspacemanager.Models.Fleet;
 import com.dupuy.remi.outerspacemanager.Models.Helpers.SharedPreferencesHelper;
-import com.dupuy.remi.outerspacemanager.Models.ListingBuildings;
+import com.dupuy.remi.outerspacemanager.Models.ListingUsers;
 import com.dupuy.remi.outerspacemanager.Models.Ship;
+import com.dupuy.remi.outerspacemanager.Models.User;
 import com.dupuy.remi.outerspacemanager.Models.WrapperCall;
 
 import java.util.List;
@@ -26,28 +26,31 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public class FleetActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
-    private ListView lv_fleet;
-    private List<Ship> fleet;
+public class GalaxyActivity extends AppCompatActivity {
+
+
+    private ListView lv_galaxy;
+    private ListingUsers users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fleet);
+        setContentView(R.layout.activity_galaxy);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         OuterSpaceManagerInterface service = WrapperCall.initialization();
-        Call<Fleet> request = service.getFleetUser(SharedPreferencesHelper.getPrefsName(getApplicationContext(), "token", null));
-        request.enqueue(new Callback<Fleet>(){
+        Call<ListingUsers> request = service.getUsers(SharedPreferencesHelper.getPrefsName(getApplicationContext(), "token", null));
+        request.enqueue(new Callback<ListingUsers>(){
 
             @Override
-            public void onResponse(Call<Fleet> call, retrofit2.Response<Fleet> response) {
+            public void onResponse(Call<ListingUsers> call, retrofit2.Response<ListingUsers> response) {
                 if(response.code() == 200) {
-                    fleet = response.body().getShips();
-                    lv_fleet = (ListView)findViewById(R.id.lv_fleet);
-                    TextView emptyText = (TextView)findViewById(R.id.empty);
-                    lv_fleet.setEmptyView(emptyText);
-                    lv_fleet.setAdapter(new ShipAdapter(getApplicationContext(), fleet));
-                    lv_fleet.setOnItemClickListener(FleetActivity.this);
+                    users = response.body();
+                    lv_galaxy = (ListView)findViewById(R.id.lv_galaxy);
+                    TextView emptyText = (TextView)findViewById(R.id.empty_galaxy);
+                    lv_galaxy.setEmptyView(emptyText);
+                    lv_galaxy.setAdapter(new GalaxyAdapter(getApplicationContext(), users.getUsers()));
                 } else {
                     Toast toast = Toast.makeText(getApplicationContext(), "Erreur de connexion", Toast.LENGTH_SHORT);
                     toast.show();
@@ -59,10 +62,7 @@ public class FleetActivity extends AppCompatActivity implements AdapterView.OnIt
                 Log.wtf("PLOUF", t.toString());
             }
         });
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
     }
+
 }
