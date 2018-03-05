@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -32,7 +33,7 @@ import retrofit2.Callback;
  * Created by rdupuy on 27/02/2018.
  */
 
-public class FragmentListingSearches extends Fragment {
+public class FragmentListingSearches extends Fragment implements AdapterView.OnItemClickListener {
     private ListView lvSearches;
     public ListingSearches listSearches;
 
@@ -59,7 +60,8 @@ public class FragmentListingSearches extends Fragment {
                     listSearches = response.body();
                     lvSearches = (ListView)getView().findViewById(R.id.lv_searches);
                     lvSearches.setAdapter(new SearchesAdapter((SearchesActivity)getActivity(), listSearches.getSearches()));
-                    lvSearches.setOnItemClickListener((SearchesActivity)getActivity());
+                    lvSearches.setOnItemClickListener(FragmentListingSearches.this);
+                    ((OnFragmentInteractionListener)getActivity()).updateRowSelected(0);
                 } else {
                     Toast toast = Toast.makeText((SearchesActivity)getActivity(), "Erreur de connexion", Toast.LENGTH_SHORT);
                     toast.show();
@@ -73,5 +75,10 @@ public class FragmentListingSearches extends Fragment {
         });
 
 
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        ((OnFragmentInteractionListener)getActivity()).updateRowSelected(position);
     }
 }

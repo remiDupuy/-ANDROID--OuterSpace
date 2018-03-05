@@ -11,6 +11,7 @@ import com.dupuy.remi.outerspacemanager.Models.User;
 
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -49,4 +50,7 @@ public interface OuterSpaceManagerInterface {
 
     @GET("api/v1/searches/list")
     Call<ListingSearches> getSearches(@Header("x-access-token") String token);
+
+    @POST("api/v1/searches/create/{id}")
+    Call<ResponseBody> createSearch(@Header("x-access-token") String token, @Path("id") int searchId);
 }

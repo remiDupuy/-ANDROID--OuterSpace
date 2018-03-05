@@ -5,7 +5,8 @@ package com.dupuy.remi.outerspacemanager.Models;
  */
 
 public class Search {
-    
+
+    private int searchId;
     private long amountOfEffectByLevel;
     private long amountOfEffectLevel0;
     private boolean building;
@@ -19,7 +20,8 @@ public class Search {
     private long timeToBuildByLevel;
     private long timeToBuildLevel0;
 
-    public Search(long amountOfEffectByLevel, long amountOfEffectLevel0, boolean building, String effect, long gasCostByLevel, long gasCostLevel0, long level, long mineralCostByLevel, long mineralCostLevel0, String name, long timeToBuildByLevel, long timeToBuildLevel0) {
+    public Search(int searchId, long amountOfEffectByLevel, long amountOfEffectLevel0, boolean building, String effect, long gasCostByLevel, long gasCostLevel0, long level, long mineralCostByLevel, long mineralCostLevel0, String name, long timeToBuildByLevel, long timeToBuildLevel0) {
+        this.searchId = searchId;
         this.amountOfEffectByLevel = amountOfEffectByLevel;
         this.amountOfEffectLevel0 = amountOfEffectLevel0;
         this.building = building;
@@ -33,6 +35,16 @@ public class Search {
         this.timeToBuildByLevel = timeToBuildByLevel;
         this.timeToBuildLevel0 = timeToBuildLevel0;
     }
+
+
+    public int getSearchId() {
+        return searchId;
+    }
+
+    public void setSearchId(int searchId) {
+        this.searchId = searchId;
+    }
+
 
     public long getAmountOfEffectByLevel() {
         return amountOfEffectByLevel;

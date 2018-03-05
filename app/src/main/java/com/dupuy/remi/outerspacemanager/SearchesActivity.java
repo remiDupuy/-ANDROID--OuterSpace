@@ -1,7 +1,12 @@
 package com.dupuy.remi.outerspacemanager;
 
+import android.app.Activity;
+import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -14,25 +19,62 @@ import android.widget.Toast;
 import com.dupuy.remi.outerspacemanager.Adapters.ShipAdapter;
 import com.dupuy.remi.outerspacemanager.Fragments.FragmentDetailSearches;
 import com.dupuy.remi.outerspacemanager.Fragments.FragmentListingSearches;
+import com.dupuy.remi.outerspacemanager.Fragments.OnFragmentInteractionListener;
 import com.dupuy.remi.outerspacemanager.Interface.OuterSpaceManagerInterface;
 import com.dupuy.remi.outerspacemanager.Models.Helpers.SharedPreferencesHelper;
+import com.dupuy.remi.outerspacemanager.Models.ListingSearches;
 import com.dupuy.remi.outerspacemanager.Models.ListingShips;
+import com.dupuy.remi.outerspacemanager.Models.Search;
 import com.dupuy.remi.outerspacemanager.Models.WrapperCall;
 import com.google.gson.Gson;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public class SearchesActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
-    
+public class SearchesActivity extends AppCompatActivity implements OnFragmentInteractionListener {
+
+    private String search;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (savedInstanceState != null && savedInstanceState.containsKey("search")) {
+            search = savedInstanceState.getString("search", null);
+        }
+        getSupportFragmentManager().registerFragmentLifecycleCallbacks(new FragmentManager.FragmentLifecycleCallbacks() {
+            @Override
+            public void onFragmentViewCreated(FragmentManager fm, android.support.v4.app.Fragment f, View v, Bundle savedInstanceState) {
+                super.onFragmentViewCreated(fm, f, v, savedInstanceState);
+                if (f.getClass() == FragmentDetailSearches.class) {
+                    if (search != null) {
+                        ((FragmentDetailSearches)f).fillFragment(search);
+                        search = null;
+                    }
+                }
+            }
+        }, true);
         setContentView(R.layout.activity_searches);
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("search", search);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+            super.onActivityResult(requestCode, resultCode, data);
+
+            if(resultCode == Activity.RESULT_OK) {
+                search = data.getStringExtra("search");
+            }
+    }
+
+    @Override
+    public void updateRowSelected(int position) {
         FragmentListingSearches fragList = (FragmentListingSearches)getSupportFragmentManager().findFragmentById(R.id.fragmentListSearches);
         FragmentDetailSearches fragDetail = (FragmentDetailSearches)getSupportFragmentManager().findFragmentById(R.id.fragmentDetailSearches);
         Gson gson = new Gson();
@@ -41,7 +83,7 @@ public class SearchesActivity extends AppCompatActivity implements AdapterView.O
         if(fragDetail == null || !fragDetail.isInLayout()){
             Intent i = new Intent(getApplicationContext(),SearchesDetailActivity.class);
             i.putExtra("search", json);
-            startActivity(i);
+            startActivityForResult(i,0);
         } else {
             fragDetail.fillFragment(json);
         }
