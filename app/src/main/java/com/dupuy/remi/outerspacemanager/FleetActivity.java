@@ -13,12 +13,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dupuy.remi.outerspacemanager.Adapters.BuildingAdapter;
+import com.dupuy.remi.outerspacemanager.Adapters.FleetAdapter;
 import com.dupuy.remi.outerspacemanager.Adapters.ShipAdapter;
 import com.dupuy.remi.outerspacemanager.Interface.OuterSpaceManagerInterface;
 import com.dupuy.remi.outerspacemanager.Models.Fleet;
 import com.dupuy.remi.outerspacemanager.Models.Helpers.SharedPreferencesHelper;
 import com.dupuy.remi.outerspacemanager.Models.ListingBuildings;
 import com.dupuy.remi.outerspacemanager.Models.Ship;
+import com.dupuy.remi.outerspacemanager.Models.ShipFleet;
 import com.dupuy.remi.outerspacemanager.Models.WrapperCall;
 
 import java.util.List;
@@ -28,7 +30,7 @@ import retrofit2.Callback;
 
 public class FleetActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     private ListView lv_fleet;
-    private List<Ship> fleet;
+    private List<ShipFleet> fleet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,7 @@ public class FleetActivity extends AppCompatActivity implements AdapterView.OnIt
                     lv_fleet = (ListView)findViewById(R.id.lv_fleet);
                     TextView emptyText = (TextView)findViewById(R.id.empty);
                     lv_fleet.setEmptyView(emptyText);
-                    lv_fleet.setAdapter(new ShipAdapter(getApplicationContext(), fleet));
+                    lv_fleet.setAdapter(new FleetAdapter(FleetActivity.this, fleet));
                     lv_fleet.setOnItemClickListener(FleetActivity.this);
                 } else {
                     Toast toast = Toast.makeText(getApplicationContext(), "Erreur de connexion", Toast.LENGTH_SHORT);

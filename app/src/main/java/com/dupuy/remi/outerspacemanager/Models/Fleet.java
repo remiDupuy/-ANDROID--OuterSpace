@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Fleet {
     private int size;
-    private List<Ship> ships;
+    private List<ShipFleet> ships;
 
     public int getSize() {
         return size;
@@ -18,11 +18,11 @@ public class Fleet {
         this.size = size;
     }
 
-    public List<Ship> getShips() {
+    public List<ShipFleet> getShips() {
         return ships;
     }
 
-    public void setShips(List<Ship> ships) {
+    public void setShips(List<ShipFleet> ships) {
         this.ships = ships;
     }
 

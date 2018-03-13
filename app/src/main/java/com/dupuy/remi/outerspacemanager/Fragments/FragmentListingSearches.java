@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,9 +34,10 @@ import retrofit2.Callback;
  * Created by rdupuy on 27/02/2018.
  */
 
-public class FragmentListingSearches extends Fragment implements AdapterView.OnItemClickListener {
+public class FragmentListingSearches extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
     private ListView lvSearches;
     public ListingSearches listSearches;
+    public Button btn_get;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
@@ -61,7 +63,7 @@ public class FragmentListingSearches extends Fragment implements AdapterView.OnI
                     lvSearches = (ListView)getView().findViewById(R.id.lv_searches);
                     lvSearches.setAdapter(new SearchesAdapter((SearchesActivity)getActivity(), listSearches.getSearches()));
                     lvSearches.setOnItemClickListener(FragmentListingSearches.this);
-                    ((OnFragmentInteractionListener)getActivity()).updateRowSelected(0);
+                    ((OnFragmentInteractionListener)getActivity()).updateRowSelected(0, false);
                 } else {
                     Toast toast = Toast.makeText((SearchesActivity)getActivity(), "Erreur de connexion", Toast.LENGTH_SHORT);
                     toast.show();
@@ -79,6 +81,11 @@ public class FragmentListingSearches extends Fragment implements AdapterView.OnI
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        ((OnFragmentInteractionListener)getActivity()).updateRowSelected(position);
+        ((OnFragmentInteractionListener)getActivity()).updateRowSelected(position, true);
+    }
+
+    @Override
+    public void onClick(View v) {
+        String test = "ok";
     }
 }

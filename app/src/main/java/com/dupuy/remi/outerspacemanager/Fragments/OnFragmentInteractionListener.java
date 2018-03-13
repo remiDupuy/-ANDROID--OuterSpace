@@ -5,5 +5,5 @@ package com.dupuy.remi.outerspacemanager.Fragments;
  */
 
 public interface OnFragmentInteractionListener {
-    void updateRowSelected(int position);
+    void updateRowSelected(int position, boolean redirect);
 }

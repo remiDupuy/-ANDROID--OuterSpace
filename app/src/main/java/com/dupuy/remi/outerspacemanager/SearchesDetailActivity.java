@@ -47,10 +47,4 @@ public class SearchesDetailActivity extends AppCompatActivity{
             listener.enable();
         }
     }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        Toast.makeText(this, "oidnsfionsodi", Toast.LENGTH_SHORT).show();
-    }
 }

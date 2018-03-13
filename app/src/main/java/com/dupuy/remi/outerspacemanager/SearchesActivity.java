@@ -73,8 +73,9 @@ public class SearchesActivity extends AppCompatActivity implements OnFragmentInt
             }
     }
 
+
     @Override
-    public void updateRowSelected(int position) {
+    public void updateRowSelected(int position, boolean redirect) {
         FragmentListingSearches fragList = (FragmentListingSearches)getSupportFragmentManager().findFragmentById(R.id.fragmentListSearches);
         FragmentDetailSearches fragDetail = (FragmentDetailSearches)getSupportFragmentManager().findFragmentById(R.id.fragmentDetailSearches);
         Gson gson = new Gson();
@@ -83,7 +84,9 @@ public class SearchesActivity extends AppCompatActivity implements OnFragmentInt
         if(fragDetail == null || !fragDetail.isInLayout()){
             Intent i = new Intent(getApplicationContext(),SearchesDetailActivity.class);
             i.putExtra("search", json);
-            startActivityForResult(i,0);
+            if(redirect) {
+                startActivityForResult(i,0);
+            }
         } else {
             fragDetail.fillFragment(json);
         }

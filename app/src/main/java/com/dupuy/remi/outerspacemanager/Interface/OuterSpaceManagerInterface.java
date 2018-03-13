@@ -7,6 +7,7 @@ import com.dupuy.remi.outerspacemanager.Models.ListingShips;
 import com.dupuy.remi.outerspacemanager.Models.ListingUsers;
 import com.dupuy.remi.outerspacemanager.Models.Responses.Response;
 import com.dupuy.remi.outerspacemanager.Models.Responses.ResponseCreateBuilding;
+import com.dupuy.remi.outerspacemanager.Models.ShipCreate;
 import com.dupuy.remi.outerspacemanager.Models.User;
 
 import java.util.List;
@@ -14,6 +15,8 @@ import java.util.List;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
@@ -47,6 +50,9 @@ public interface OuterSpaceManagerInterface {
 
     @GET("api/v1/ships")
     Call<ListingShips> getShips(@Header("x-access-token") String token);
+
+    @POST("api/v1/ships/create/{id}")
+    Call<ResponseBody> createShip(@Header("x-access-token") String token, @Path("id") long shipId, @Body ShipCreate shipCreate);
 
     @GET("api/v1/searches/list")
     Call<ListingSearches> getSearches(@Header("x-access-token") String token);

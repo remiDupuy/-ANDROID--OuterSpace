@@ -44,7 +44,7 @@ public class ShipsActivity extends AppCompatActivity {
                     lv_ships = (ListView)findViewById(R.id.lv_ships);
                     TextView emptyText = (TextView)findViewById(R.id.empty_galaxy);
                     lv_ships.setEmptyView(emptyText);
-                    lv_ships.setAdapter(new ShipAdapter(getApplicationContext(), ships.getShips()));
+                    lv_ships.setAdapter(new ShipAdapter(ShipsActivity.this, ships.getShips()));
                 } else {
                     Toast toast = Toast.makeText(getApplicationContext(), "Erreur de connexion", Toast.LENGTH_SHORT);
                     toast.show();
