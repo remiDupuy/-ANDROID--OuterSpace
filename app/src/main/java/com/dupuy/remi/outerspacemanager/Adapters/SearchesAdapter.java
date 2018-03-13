@@ -29,7 +29,7 @@ public class SearchesAdapter extends ArrayAdapter<Search> {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.fleet_adapter, parent, false);
+        View rowView = inflater.inflate(R.layout.searches_adapter, parent, false);
         TextView ship_name = (TextView) rowView.findViewById(R.id.ship_name);
         ship_name.setText(values.get(position).getName());
 
