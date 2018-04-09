@@ -54,7 +54,7 @@ public class GalaxyActivity extends AppCompatActivity {
                     lv_galaxy = (ListView)findViewById(R.id.lv_galaxy);
                     TextView emptyText = (TextView)findViewById(R.id.empty_galaxy);
                     lv_galaxy.setEmptyView(emptyText);
-                    lv_galaxy.setAdapter(new GalaxyAdapter(getApplicationContext(), users.getUsers()));
+                    lv_galaxy.setAdapter(new GalaxyAdapter(GalaxyActivity.this, users.getUsers()));
                 } else {
                     Toast toast = Toast.makeText(getApplicationContext(), "Erreur de connexion", Toast.LENGTH_SHORT);
                     toast.show();

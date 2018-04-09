@@ -4,6 +4,7 @@ import com.dupuy.remi.outerspacemanager.Models.Fleet;
 import com.dupuy.remi.outerspacemanager.Models.ListingBuildings;
 import com.dupuy.remi.outerspacemanager.Models.ListingSearches;
 import com.dupuy.remi.outerspacemanager.Models.ListingShips;
+import com.dupuy.remi.outerspacemanager.Models.ListingShipsSend;
 import com.dupuy.remi.outerspacemanager.Models.ListingUsers;
 import com.dupuy.remi.outerspacemanager.Models.Responses.Response;
 import com.dupuy.remi.outerspacemanager.Models.Responses.ResponseCreateBuilding;
@@ -59,4 +60,7 @@ public interface OuterSpaceManagerInterface {
 
     @POST("api/v1/searches/create/{id}")
     Call<ResponseBody> createSearch(@Header("x-access-token") String token, @Path("id") int searchId);
+
+    @POST("/api/v1/fleet/attack/{user}")
+    Call<ResponseBody> attackUser(@Header("x-access-token") String token, @Path("user") String userName, @Body ListingShipsSend shipsSend);
 }
