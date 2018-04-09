@@ -22,5 +22,6 @@
 
     <include layout="@layout/content_ships" />
 
+    <include layout="@layout/spinning_loader" />
 
 </android.support.design.widget.CoordinatorLayout>

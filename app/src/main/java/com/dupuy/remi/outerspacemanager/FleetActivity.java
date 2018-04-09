@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ public class FleetActivity extends AppCompatActivity implements AdapterView.OnIt
     private ListView lv_fleet;
     private List<ShipFleet> fleet;
 
+    private ProgressBar progressLoader;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +45,11 @@ public class FleetActivity extends AppCompatActivity implements AdapterView.OnIt
 
             @Override
             public void onResponse(Call<Fleet> call, retrofit2.Response<Fleet> response) {
+                progressLoader = findViewById(R.id.progress_loader);
+                progressLoader.setVisibility(View.INVISIBLE);
+
                 if(response.code() == 200) {
+
                     fleet = response.body().getShips();
                     lv_fleet = (ListView)findViewById(R.id.lv_fleet);
                     TextView emptyText = (TextView)findViewById(R.id.empty);

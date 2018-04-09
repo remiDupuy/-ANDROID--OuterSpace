@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,7 @@ public class GalaxyActivity extends AppCompatActivity {
 
     private ListView lv_galaxy;
     private ListingUsers users;
+    private ProgressBar progressLoader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,8 @@ public class GalaxyActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call<ListingUsers> call, retrofit2.Response<ListingUsers> response) {
+                progressLoader = findViewById(R.id.progress_loader);
+                progressLoader.setVisibility(View.INVISIBLE);
                 if(response.code() == 200) {
                     users = response.body();
                     lv_galaxy = (ListView)findViewById(R.id.lv_galaxy);

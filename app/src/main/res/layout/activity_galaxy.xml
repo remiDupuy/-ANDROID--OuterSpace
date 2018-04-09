@@ -22,4 +22,6 @@
 
     <include layout="@layout/content_galaxy" />
 
+    <include layout="@layout/spinning_loader" />
+
 </android.support.design.widget.CoordinatorLayout>

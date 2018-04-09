@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,7 @@ public class FragmentListingSearches extends Fragment implements AdapterView.OnI
     private ListView lvSearches;
     public ListingSearches listSearches;
     public Button btn_get;
+    private ProgressBar progressLoader;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
@@ -58,6 +60,9 @@ public class FragmentListingSearches extends Fragment implements AdapterView.OnI
 
             @Override
             public void onResponse(Call<ListingSearches> call, retrofit2.Response<ListingSearches> response) {
+
+                progressLoader = getView().findViewById(R.id.progress_loader);
+                progressLoader.setVisibility(View.INVISIBLE);
                 if(response.code() == 200) {
                     listSearches = response.body();
                     lvSearches = (ListView)getView().findViewById(R.id.lv_searches);

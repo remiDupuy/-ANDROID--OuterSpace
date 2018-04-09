@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,8 @@ public class ShipsActivity extends AppCompatActivity{
     private ListView lv_ships;
     private BottomSheetLayout bottomSheet;
 
+    private ProgressBar progressLoader;
+
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +43,19 @@ public class ShipsActivity extends AppCompatActivity{
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         OuterSpaceManagerInterface service = WrapperCall.initialization();
         Call<ListingShips> request = service.getShips(SharedPreferencesHelper.getPrefsName(getApplicationContext(), "token", null));
         request.enqueue(new Callback<ListingShips>(){
 
             @Override
             public void onResponse(Call<ListingShips> call, retrofit2.Response<ListingShips> response) {
+
+                progressLoader = findViewById(R.id.progress_loader);
+                progressLoader.setVisibility(View.INVISIBLE);
+
                 if(response.code() == 200) {
+
                     ships = response.body();
                     lv_ships = (ListView)findViewById(R.id.lv_ships);
                     TextView emptyText = (TextView)findViewById(R.id.empty_galaxy);

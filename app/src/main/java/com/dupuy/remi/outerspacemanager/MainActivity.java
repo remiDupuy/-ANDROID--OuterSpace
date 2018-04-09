@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn_galaxy;
     private Button btn_ships;
     private Button btn_searches;
+    private Button btn_disconnect;
 
 
     @Override
@@ -79,6 +80,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btn_searches = findViewById(R.id.btn_searches);
         btn_searches.setOnClickListener(this);
+
+        btn_disconnect = findViewById(R.id.btn_logout);
+        btn_disconnect.setOnClickListener(this);
     }
 
     @Override
@@ -107,6 +111,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_searches:
                 Intent iSearches = new Intent(getApplicationContext(), SearchesActivity.class);
                 startActivity(iSearches);
+                break;
+
+            case R.id.btn_logout:
+                SharedPreferencesHelper.deletePrefs(getApplicationContext(), "token");
+                Intent iLogin = new Intent(getApplicationContext(), SignUpActivity.class);
+                startActivity(iLogin);
                 break;
         }
     }

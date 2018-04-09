@@ -12,7 +12,7 @@
     <string name="title_activity_fleet">FleetActivity</string>
     <string name="no_fleet">No fleet</string>
     <string name="title_activity_galaxy">GalaxyActivity</string>
-    <string name="score">Score :</string>
+    <string name="score">Scorse :</string>
     <string name="title_activity_ships">ShipsActivity</string>
     <string name="no_ships">No ships</string>
     <string name="default_name">Default name</string>

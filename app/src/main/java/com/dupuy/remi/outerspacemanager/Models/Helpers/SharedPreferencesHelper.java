@@ -21,4 +21,9 @@ public class SharedPreferencesHelper {
         SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, 0);
         return settings.getString(key, defaultValue);
     }
+
+    public static void deletePrefs(Context context, String key) {
+        SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, 0);
+        settings.edit().remove(key).apply();
+    }
 }
