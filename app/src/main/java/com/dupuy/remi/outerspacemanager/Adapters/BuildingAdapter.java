@@ -29,6 +29,7 @@ import com.dupuy.remi.outerspacemanager.Classes.ProgressBuilding;
 import com.dupuy.remi.outerspacemanager.Interface.OuterSpaceManagerInterface;
 import com.dupuy.remi.outerspacemanager.Models.Building;
 import com.dupuy.remi.outerspacemanager.Models.Helpers.SharedPreferencesHelper;
+import com.dupuy.remi.outerspacemanager.Models.Helpers.Tools;
 import com.dupuy.remi.outerspacemanager.Models.Responses.ResponseCreateBuilding;
 import com.dupuy.remi.outerspacemanager.Models.WrapperCall;
 import com.dupuy.remi.outerspacemanager.R;
@@ -124,17 +125,18 @@ public class BuildingAdapter extends ArrayAdapter<Building> {
             }
         }
 
+        int level = values.get(position).getLevel();
         TextView buildingLevel = (TextView)rowView.findViewById(R.id.building_level);
-        buildingLevel.setText(Integer.toString(values.get(position).getLevel() == null ? 0 : values.get(position).getLevel()));
+        buildingLevel.setText(Integer.toString(level));
 
         TextView buildingGas = (TextView)rowView.findViewById(R.id.building_gas);
-        buildingGas.setText(Integer.toString(values.get(position).getGasCostByLevel())+"/lvl");
+        buildingGas.setText(Integer.toString(values.get(position).getGasCostByLevel() * level));
 
         TextView buildingMinerals = (TextView)rowView.findViewById(R.id.building_materials);
-        buildingMinerals.setText(Integer.toString(values.get(position).getMineralCostByLevel())+"/lvl");
+        buildingMinerals.setText(Integer.toString(values.get(position).getMineralCostByLevel() * level));
 
         TextView buildingTime = (TextView)rowView.findViewById(R.id.building_construction_time);
-        buildingTime.setText(Integer.toString(values.get(position).getTimeToBuildByLevel())+"/sec");
+        buildingTime.setText(Tools.secondToHumanReadableTime(values.get(position).getTimeToBuildByLevel() * level));
 
         TextView buildingEffect = (TextView)rowView.findViewById(R.id.building_effect);
         buildingEffect.setText(values.get(position).getEffect() == null ? "Pas d'effets" : values.get(position).getEffect());
