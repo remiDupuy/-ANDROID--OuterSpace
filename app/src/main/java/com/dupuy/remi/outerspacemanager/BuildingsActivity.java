@@ -47,7 +47,7 @@ public class BuildingsActivity extends AppCompatActivity implements AdapterView.
                 if(response.code() == 200) {
                     list_buildings = response.body().getBuildings();
                     lstView_buildings = (ListView)findViewById(R.id.lstView_buildings);
-                    lstView_buildings.setAdapter(new BuildingAdapter(getApplicationContext(), list_buildings));
+                    lstView_buildings.setAdapter(new BuildingAdapter(BuildingsActivity.this, list_buildings));
                     lstView_buildings.setOnItemClickListener(BuildingsActivity.this);
                 } else {
                     Toast toast = Toast.makeText(getApplicationContext(), "Erreur de connexion", Toast.LENGTH_SHORT);

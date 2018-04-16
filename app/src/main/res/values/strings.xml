@@ -18,4 +18,5 @@
     <string name="default_name">Default name</string>
     <string name="research">Research</string>
     <string name="confirm_create_ship">Confrimer vous la création des vaisseaux ?</string>
+    <string name="upgrade">Upgrade</string>
 </resources>
