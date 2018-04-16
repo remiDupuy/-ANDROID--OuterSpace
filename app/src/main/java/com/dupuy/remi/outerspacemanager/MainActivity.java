@@ -16,6 +16,7 @@ import com.dupuy.remi.outerspacemanager.Models.User;
 import com.dupuy.remi.outerspacemanager.Models.WrapperCall;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import retrofit2.Call;
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView txtView_username;
 
     private TextView txtViewPoints;
+    private TextView txtGasUser;
+    private TextView txtRockUser;
 
     private Button btn_buildings;
     private Button btn_flotte;
@@ -54,6 +57,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     txtViewPoints = (TextView)findViewById(R.id.txtViewPoints);
                     txtViewPoints.setText(Integer.toString(currentuser.points));
+
+                    txtGasUser = (TextView)findViewById(R.id.gas_user);
+                    DecimalFormat df = new DecimalFormat();
+                    df.setMaximumFractionDigits(2);
+                    txtGasUser.setText(df.format(currentuser.gas));
+
+                    txtRockUser = (TextView)findViewById(R.id.rock_user);
+                    txtRockUser.setText(df.format(currentuser.minerals));
                 } else {
                     Toast toast = Toast.makeText(getApplicationContext(), "Erreur de connexion", Toast.LENGTH_SHORT);
                     toast.show();

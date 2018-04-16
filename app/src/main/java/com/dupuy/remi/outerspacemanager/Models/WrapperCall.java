@@ -13,7 +13,7 @@ public class WrapperCall {
 
     public static OuterSpaceManagerInterface initialization() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://outer-space-manager.herokuapp.com/")
+                .baseUrl("https://outer-space-manager-staging.herokuapp.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

@@ -110,7 +110,7 @@ public class ViewBuildingActivity extends Activity {
         Glide.with(this).load(building.getImageUrl()).into(this.img_building);
 
         this.building_level = findViewById(R.id.building_level);
-        this.building_level.setText(Integer.toString(building.getLevel()));
+        this.building_level.setText(Integer.toString(building.getLevel() == null ? 0 : building.getLevel()));
 
 
         this.amountOfEffectByLevel = findViewById(R.id.amountOfEffectByLevel);
