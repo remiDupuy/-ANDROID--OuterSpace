@@ -38,8 +38,6 @@ public class GalaxyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_galaxy);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         OuterSpaceManagerInterface service = WrapperCall.initialization();
         Call<ListingUsers> request = service.getUsers(SharedPreferencesHelper.getPrefsName(getApplicationContext(), "token", null));

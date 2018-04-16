@@ -44,7 +44,7 @@ public class ViewBuildingActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_building);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
         Intent intent = getIntent();
         final String jsonBuilding = intent.getStringExtra("building");
         Gson gson = new Gson();

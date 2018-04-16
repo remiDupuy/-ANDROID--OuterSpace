@@ -43,82 +43,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.fillInfosUser();
     }
 
-    private void fillInfosUser() {
-        OuterSpaceManagerInterface service = WrapperCall.initialization();
-        Call<User> request = service.getCurrentUser(SharedPreferencesHelper.getPrefsName(getApplicationContext(), "token", null));
-        request.enqueue(new Callback<User>(){
-
-            @Override
-            public void onResponse(Call<User> call, retrofit2.Response<User> response) {
-                if(response.code() == 200) {
-                    SharedPreferencesHelper.setPrefsName(getApplicationContext(), "username", response.body().username);
-                    User currentuser = response.body();
-                    currentuser.save();
-                    txtView_username = (TextView)findViewById(R.id.txtView_username);
-                    txtView_username.setText(currentuser.username);
-
-                    txtViewPoints = (TextView)findViewById(R.id.txtViewPoints);
-                    txtViewPoints.setText(Integer.toString(currentuser.points));
-
-                    txtGasUser = (TextView)findViewById(R.id.gas_user);
-                    DecimalFormat df = new DecimalFormat();
-                    df.setMaximumFractionDigits(2);
-                    txtGasUser.setText(df.format(currentuser.gas));
-
-                    txtRockUser = (TextView)findViewById(R.id.rock_user);
-                    txtRockUser.setText(df.format(currentuser.minerals));
-                } else {
-                    Toast toast = Toast.makeText(getApplicationContext(), "Erreur de connexion", Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call call, Throwable t) {
-                Log.wtf("PLOUF", t.toString());
-            }
-        });
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        OuterSpaceManagerInterface service = WrapperCall.initialization();
-        Call<User> request = service.getCurrentUser(SharedPreferencesHelper.getPrefsName(getApplicationContext(), "token", null));
-        request.enqueue(new Callback<User>(){
 
-            @Override
-            public void onResponse(Call<User> call, retrofit2.Response<User> response) {
-                if(response.code() == 200) {
-                    SharedPreferencesHelper.setPrefsName(getApplicationContext(), "username", response.body().username);
-                    User currentuser = response.body();
-                    currentuser.save();
-                    txtView_username = (TextView)findViewById(R.id.txtView_username);
-                    txtView_username.setText(currentuser.username);
-
-                    txtViewPoints = (TextView)findViewById(R.id.txtViewPoints);
-                    txtViewPoints.setText(Integer.toString(currentuser.points));
-
-                    txtGasUser = (TextView)findViewById(R.id.gas_user);
-                    DecimalFormat df = new DecimalFormat();
-                    df.setMaximumFractionDigits(2);
-                    txtGasUser.setText(df.format(currentuser.gas));
-
-                    txtRockUser = (TextView)findViewById(R.id.rock_user);
-                    txtRockUser.setText(df.format(currentuser.minerals));
-                } else {
-                    Toast toast = Toast.makeText(getApplicationContext(), "Erreur de connexion", Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call call, Throwable t) {
-                Log.wtf("PLOUF", t.toString());
-            }
-        });
+        this.fillInfosUser();
 
         btn_buildings = findViewById(R.id.btn_buildings);
         btn_buildings.setOnClickListener(this);
@@ -173,5 +105,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(iLogin);
                 break;
         }
+    }
+
+    private void fillInfosUser() {
+        OuterSpaceManagerInterface service = WrapperCall.initialization();
+        Call<User> request = service.getCurrentUser(SharedPreferencesHelper.getPrefsName(getApplicationContext(), "token", null));
+        request.enqueue(new Callback<User>(){
+
+            @Override
+            public void onResponse(Call<User> call, retrofit2.Response<User> response) {
+                if(response.code() == 200) {
+                    SharedPreferencesHelper.setPrefsName(getApplicationContext(), "username", response.body().username);
+                    User currentuser = response.body();
+                    currentuser.save();
+                    txtView_username = (TextView)findViewById(R.id.txtView_username);
+                    txtView_username.setText(currentuser.username);
+
+                    txtViewPoints = (TextView)findViewById(R.id.txtViewPoints);
+                    txtViewPoints.setText(Integer.toString(currentuser.points));
+
+                    txtGasUser = (TextView)findViewById(R.id.gas_user);
+                    DecimalFormat df = new DecimalFormat();
+                    df.setMaximumFractionDigits(2);
+                    txtGasUser.setText(df.format(currentuser.gas));
+
+                    txtRockUser = (TextView)findViewById(R.id.rock_user);
+                    txtRockUser.setText(df.format(currentuser.minerals));
+                } else {
+                    Toast toast = Toast.makeText(getApplicationContext(), "Erreur de connexion", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                Log.wtf("PLOUF", t.toString());
+            }
+        });
     }
 }

@@ -1,7 +1,9 @@
 package com.dupuy.remi.outerspacemanager.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.databinding.DataBindingUtil;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -20,6 +22,7 @@ import com.dupuy.remi.outerspacemanager.Models.ShipCreate;
 import com.dupuy.remi.outerspacemanager.Models.ShipFleet;
 import com.dupuy.remi.outerspacemanager.Models.WrapperCall;
 import com.dupuy.remi.outerspacemanager.R;
+import com.dupuy.remi.outerspacemanager.databinding.FleetAdapterBinding;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,12 +50,10 @@ public class FleetAdapter extends ArrayAdapter<ShipFleet> {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.fleet_adapter, parent, false);
-        TextView ship_name = (TextView) rowView.findViewById(R.id.ship_name);
-        TextView ship_quantity = (TextView) rowView.findViewById(R.id.ship_quantity);
 
-        ship_name.setText(values.get(position).getName());
-        ship_quantity.setText(String.valueOf(values.get(position).getAmount()));
-        return rowView;
+        FleetAdapterBinding binding = FleetAdapterBinding.inflate(inflater, parent, false);
+
+        binding.setShip(values.get(position));
+        return binding.getRoot();
     }
 }

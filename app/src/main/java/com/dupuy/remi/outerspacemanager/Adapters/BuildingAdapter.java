@@ -195,9 +195,11 @@ public class BuildingAdapter extends ArrayAdapter<Building> {
                             Gson gson = new Gson();
                             SharedPreferencesHelper.setPrefsName(context, "upgrade_"+values.get(position).getBuildingId(), gson.toJson(progress));
 
-                            v.setEnabled(false);
+                            ((Button)v).setEnabled(false);
+                            ((Button)v).setTextColor(Color.GRAY);
+                            final ProgressBar pb = (ProgressBar) ((LinearLayout) v.getParent().getParent()).findViewById(R.id.progressUpgrade);
+                            pb.setVisibility(View.VISIBLE);
                             new CountDownTimer(timeBuild * 1000, 1000) {
-                                ProgressBar pb = (ProgressBar) ((LinearLayout) v.getParent().getParent()).findViewById(R.id.progressUpgrade);
 
                                 public void onTick(long millisUntilFinished) {
                                     pb.setProgress((int)(millisUntilFinished / 1000 * 100) / timeBuild);
