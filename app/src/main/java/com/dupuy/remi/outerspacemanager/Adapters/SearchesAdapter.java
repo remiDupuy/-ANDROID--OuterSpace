@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.dupuy.remi.outerspacemanager.Models.Search;
 import com.dupuy.remi.outerspacemanager.Models.Ship;
 import com.dupuy.remi.outerspacemanager.R;
+import com.dupuy.remi.outerspacemanager.databinding.SearchesAdapterBinding;
 
 import java.util.List;
 
@@ -29,10 +30,9 @@ public class SearchesAdapter extends ArrayAdapter<Search> {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.searches_adapter, parent, false);
-        TextView ship_name = (TextView) rowView.findViewById(R.id.ship_name);
-        ship_name.setText(values.get(position).getName());
+        SearchesAdapterBinding binding = SearchesAdapterBinding.inflate(inflater, parent, false);
 
-        return rowView;
+        binding.setSearch(values.get(position));
+        return binding.getRoot();
     }
 }

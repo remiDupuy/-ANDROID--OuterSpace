@@ -20,7 +20,7 @@ import com.google.gson.Gson;
 public class SearchesDetailActivity extends AppCompatActivity{
 
     private OrientationEventListener listener;
-    private Button search_research;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

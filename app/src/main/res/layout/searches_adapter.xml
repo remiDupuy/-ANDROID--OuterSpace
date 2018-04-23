@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="10dp"
-    android:theme="@style/Theme.AppCompat">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable name="search" type="com.dupuy.remi.outerspacemanager.Models.Search"/>
+    </data>
 
-
-    <android.support.v7.widget.CardView
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="#B23900"
-        app:cardCornerRadius="5dp"
-        app:contentPadding="10dp">
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:theme="@style/Theme.AppCompat">
 
 
         <TextView
@@ -23,9 +18,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:padding="10dp"
-            android:text="Ship name"
+            android:text="@{search.name}"
             android:textColor="@android:color/black" />
 
-    </android.support.v7.widget.CardView>
 
-</LinearLayout>
+    </LinearLayout>
+
+</layout>

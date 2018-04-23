@@ -35,7 +35,7 @@ import retrofit2.Callback;
  * Created by rdupuy on 27/02/2018.
  */
 
-public class FragmentListingSearches extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
+public class FragmentListingSearches extends Fragment implements AdapterView.OnItemClickListener {
     private ListView lvSearches;
     public ListingSearches listSearches;
     public Button btn_get;
@@ -87,10 +87,5 @@ public class FragmentListingSearches extends Fragment implements AdapterView.OnI
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         ((OnFragmentInteractionListener)getActivity()).updateRowSelected(position, true);
-    }
-
-    @Override
-    public void onClick(View v) {
-        String test = "ok";
     }
 }

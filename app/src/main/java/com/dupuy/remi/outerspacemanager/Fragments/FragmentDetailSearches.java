@@ -2,6 +2,7 @@ package com.dupuy.remi.outerspacemanager.Fragments;
 
 
 import android.content.DialogInterface;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -22,6 +23,7 @@ import com.dupuy.remi.outerspacemanager.Models.WrapperCall;
 import com.dupuy.remi.outerspacemanager.R;
 import com.dupuy.remi.outerspacemanager.SearchesDetailActivity;
 import com.dupuy.remi.outerspacemanager.ViewBuildingActivity;
+import com.dupuy.remi.outerspacemanager.databinding.FragmentDetailSearchesBinding;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -40,35 +42,28 @@ import retrofit2.Response;
 
 public class FragmentDetailSearches extends Fragment implements View.OnClickListener {
 
-    private TextView search_name;
-    private TextView search_effect;
     private Button search_research;
+    private FragmentDetailSearchesBinding binding;
 
     private Search search;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup
             container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_detail_searches,container);
 
-        search_name = (TextView)v.findViewById(R.id.search_name);
-        search_effect = (TextView)v.findViewById(R.id.search_effect);
-        search_research = (Button)v.findViewById(R.id.search_research);
+        this.binding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail_searches, container, false);
+        this.search_research = binding.getRoot().findViewById(R.id.btnSearch);
+        this.search_research.setOnClickListener(this);
 
-        return v;
+        return this.binding.getRoot();
     }
 
     public void fillFragment(String json) {
         Gson gson = new Gson();
         search = gson.fromJson(json, Search.class);
 
-        this.initLayout();
-    }
-
-    private void initLayout() {
-        search_name.setText(search.getName());
-        search_effect.setText(search.getEffect());
-        search_research.setOnClickListener(this);
+        this.binding.setSearch(search);
+        this.search_research.setOnClickListener(this);
     }
 
     @Override

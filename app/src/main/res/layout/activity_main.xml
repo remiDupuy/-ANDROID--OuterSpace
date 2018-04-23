@@ -105,6 +105,7 @@
 
         <Button
             android:id="@+id/btn_general"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -114,6 +115,7 @@
 
         <Button
             android:id="@+id/btn_buildings"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -123,6 +125,7 @@
 
         <Button
             android:id="@+id/btn_flotte"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -132,6 +135,7 @@
 
         <Button
             android:id="@+id/btn_searches"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -141,6 +145,7 @@
 
         <Button
             android:id="@+id/btn_chantier"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -150,6 +155,7 @@
 
         <Button
             android:id="@+id/btn_galaxie"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -159,6 +165,7 @@
 
         <Button
             android:id="@+id/btn_logout"
+            style="@style/Widget.AppCompat.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"

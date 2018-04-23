@@ -16,7 +16,7 @@
     <string name="title_activity_ships">ShipsActivity</string>
     <string name="no_ships">No ships</string>
     <string name="default_name">Default name</string>
-    <string name="research">Research</string>
     <string name="confirm_create_ship">Confrimer vous la création des vaisseaux ?</string>
     <string name="upgrade">Upgrade</string>
+    <string name="research">Research</string>
 </resources>
