@@ -19,4 +19,5 @@
     <string name="confirm_create_ship">Confrimer vous la création des vaisseaux ?</string>
     <string name="upgrade">Upgrade</string>
     <string name="research">Research</string>
+    <string name="create">Create</string>
 </resources>

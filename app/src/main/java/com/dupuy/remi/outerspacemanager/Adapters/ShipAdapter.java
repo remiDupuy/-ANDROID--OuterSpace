@@ -1,5 +1,6 @@
 package com.dupuy.remi.outerspacemanager.Adapters;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +29,9 @@ import com.dupuy.remi.outerspacemanager.Models.ShipCreate;
 import com.dupuy.remi.outerspacemanager.Models.WrapperCall;
 import com.dupuy.remi.outerspacemanager.R;
 import com.dupuy.remi.outerspacemanager.ShipsActivity;
+import com.dupuy.remi.outerspacemanager.databinding.FleetAdapterBinding;
+import com.dupuy.remi.outerspacemanager.databinding.ShipAdapterBinding;
+import com.warkiz.widget.IndicatorSeekBar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,10 +50,10 @@ import retrofit2.Callback;
 public class ShipAdapter extends ArrayAdapter<Ship> {
     private final Context context;
     private final List<Ship> values;
-    private TextView ship_name;
-    private TextView ship_amount;
-    private Button btn_get;
-    private int shipQuantityToAdd;
+    private Button btnCreateShip;
+
+    private IndicatorSeekBar ship_quantity;
+
 
     public ShipAdapter(AppCompatActivity context, List<Ship> values) {
         super(context, R.layout.fleet_adapter, values);
@@ -60,53 +65,45 @@ public class ShipAdapter extends ArrayAdapter<Ship> {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.ship_adapter, parent, false);
-        ship_name = (TextView) rowView.findViewById(R.id.ship_name);
 
-        btn_get = (Button)rowView.findViewById(R.id.btn_get);
-        btn_get.setTag(position);
 
-        ship_amount = (TextView) rowView.findViewById(R.id.ship_amount);
-        ship_amount.addTextChangedListener(new TextWatcher() {
-            private String beforeChar;
+
+        final ShipAdapterBinding binding = ShipAdapterBinding.inflate(inflater, parent, false);
+        binding.setShip(values.get(position));
+        binding.setShipCreate(new ShipCreate(values.get(position).getShipId(), 1));
+
+        ship_quantity = (IndicatorSeekBar)binding.getRoot().findViewById(R.id.ship_quantity);
+        ship_quantity.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                try {
-                    int val = Integer.parseInt(s.toString());
-                    if(val > 9) {
-                        s.replace(0, s.length(), "9", 0, 1);
-                    } else if(val < 1) {
-                        s.replace(0, s.length(), "1", 0, 1);
-                    }
-                    shipQuantityToAdd = Integer.parseInt(s.toString());
-                } catch (NumberFormatException ex) {
-                    // Do something
-                }
+            public void onProgressChanged(IndicatorSeekBar seekBar, int progress, float progressFloat, boolean fromUserTouch) {
+                ShipCreate ship = binding.getShipCreate();
+                ship.setAmount(progress);
+                binding.setShipCreate(ship);
             }
+
+            @Override
+            public void onSectionChanged(IndicatorSeekBar seekBar, int thumbPosOnTick, String textBelowTick, boolean fromUserTouch) {}
+
+            @Override
+            public void onStartTrackingTouch(IndicatorSeekBar seekBar, int thumbPosOnTick) {}
+
+            @Override
+            public void onStopTrackingTouch(IndicatorSeekBar seekBar) {}
         });
 
-        ship_name.setText(values.get(position).getName());
 
-
-        btn_get.setOnClickListener(new View.OnClickListener() {
+        btnCreateShip = binding.getRoot().findViewById(R.id.btnCreateShip);
+        btnCreateShip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int position = (Integer)v.getTag();
-                final long ship_id = values.get(position).getShipId();
-
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 // Add the buttons
                 builder.setMessage(R.string.confirm_create_ship);
                 builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         OuterSpaceManagerInterface service = WrapperCall.initialization();
-                        Call<ResponseBody> request = service.createShip(SharedPreferencesHelper.getPrefsName(getContext(), "token", null), ship_id, new ShipCreate((int)ship_id, shipQuantityToAdd));
+
+                        Call<ResponseBody> request = service.createShip(SharedPreferencesHelper.getPrefsName(getContext(), "token", null), binding.getShipCreate().getShipId(), binding.getShipCreate());
                         request.enqueue(new Callback<ResponseBody>(){
 
                             @Override
@@ -147,6 +144,6 @@ public class ShipAdapter extends ArrayAdapter<Ship> {
             }
         });
 
-        return rowView;
+        return binding.getRoot();
     }
 }

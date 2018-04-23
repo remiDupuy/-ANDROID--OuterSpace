@@ -107,6 +107,7 @@ public class BuildingAdapter extends ArrayAdapter<Building> {
             final ProgressBar buildingTimer = (ProgressBar)rowView.findViewById(R.id.progressUpgrade);
             Gson gson = new Gson();
             final ProgressBuilding pbBuilding = gson.fromJson(SharedPreferencesHelper.getPrefsName(context, "upgrade_"+values.get(position).getBuildingId(), null), ProgressBuilding.class);
+            pbBuilding.getCal().setTimeZone(TimeZone.getTimeZone("GMT+0"));
             long milliseconds = (pbBuilding.getCal().getTimeInMillis() - Calendar.getInstance().getTimeInMillis());
             if(milliseconds > 0) {
                 btnUpgrade.setEnabled(false);
@@ -122,6 +123,8 @@ public class BuildingAdapter extends ArrayAdapter<Building> {
                     }
                 }.start();
                 buildingTimer.setVisibility(View.VISIBLE);
+            } else {
+                SharedPreferencesHelper.deletePrefs(context, "upgrade_"+values.get(position).getBuildingId());
             }
         }
 
@@ -130,13 +133,13 @@ public class BuildingAdapter extends ArrayAdapter<Building> {
         buildingLevel.setText(Integer.toString(level));
 
         TextView buildingGas = (TextView)rowView.findViewById(R.id.building_gas);
-        buildingGas.setText(Integer.toString(values.get(position).getGasCostByLevel() * level));
+        buildingGas.setText(Integer.toString(values.get(position).getGasCostByLevel() * level + values.get(position).getGasCostLevel0()));
 
         TextView buildingMinerals = (TextView)rowView.findViewById(R.id.building_materials);
-        buildingMinerals.setText(Integer.toString(values.get(position).getMineralCostByLevel() * level));
+        buildingMinerals.setText(Integer.toString(values.get(position).getMineralCostByLevel() * level + values.get(position).getMineralCostLevel0()));
 
         TextView buildingTime = (TextView)rowView.findViewById(R.id.building_construction_time);
-        buildingTime.setText(Tools.secondToHumanReadableTime(values.get(position).getTimeToBuildByLevel() * level));
+        buildingTime.setText(Tools.secondToHumanReadableTime(values.get(position).getTimeToBuildByLevel() * level + values.get(position).getTimeToBuildLevel0()));
 
         TextView buildingEffect = (TextView)rowView.findViewById(R.id.building_effect);
         buildingEffect.setText(values.get(position).getEffect() == null ? "Pas d'effets" : values.get(position).getEffect());
@@ -145,29 +148,15 @@ public class BuildingAdapter extends ArrayAdapter<Building> {
     private void toggleIcExpand(final View v) {
         RotateAnimation rotate;
         if (v.getRotation() == 180.0) {
-            rotate = new RotateAnimation(180, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+            v.setRotation(0);
+            rotate = new RotateAnimation(180, 0, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         } else {
-            rotate = new RotateAnimation(0, 180, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+            v.setRotation(180);
+            rotate = new RotateAnimation(180, 0, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         }
 
         rotate.setDuration(200);
         rotate.setInterpolator(new LinearInterpolator());
-        rotate.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) { }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                if(v.getRotation() == 0)
-                    v.setRotation(180);
-                else
-                    v.setRotation(0);
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) { }
-        });
 
         v.startAnimation(rotate);
     }
@@ -189,7 +178,7 @@ public class BuildingAdapter extends ArrayAdapter<Building> {
                             Calendar calendar = Calendar.getInstance();
                             calendar.setTimeZone(TimeZone.getTimeZone("GMT+0"));
 
-                            final int timeBuild = values.get(position).getTimeToBuildByLevel()*values.get(position).getLevel();
+                            final int timeBuild = values.get(position).getTimeToBuildByLevel()*values.get(position).getLevel() + values.get(position).getTimeToBuildLevel0();
                             calendar.add(Calendar.SECOND, timeBuild);
 
                             ProgressBuilding progress = new ProgressBuilding(calendar, timeBuild);
