@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -30,7 +32,10 @@ import retrofit2.Callback;
 public class GalaxyActivity extends AppCompatActivity {
 
 
-    private ListView lv_galaxy;
+    private RecyclerView rv_galaxy;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+
     private ListingUsers users;
     private ProgressBar progressLoader;
 
@@ -49,10 +54,17 @@ public class GalaxyActivity extends AppCompatActivity {
                 progressLoader.setVisibility(View.INVISIBLE);
                 if(response.code() == 200) {
                     users = response.body();
-                    lv_galaxy = (ListView)findViewById(R.id.lv_galaxy);
+                    rv_galaxy = (RecyclerView) findViewById(R.id.rv_galaxy);
                     TextView emptyText = (TextView)findViewById(R.id.empty_galaxy);
-                    lv_galaxy.setEmptyView(emptyText);
-                    lv_galaxy.setAdapter(new GalaxyAdapter(GalaxyActivity.this, users.getUsers()));
+                    rv_galaxy.setHasFixedSize(true);
+
+                    // use a linear layout manager
+                    mLayoutManager = new LinearLayoutManager(GalaxyActivity.this);
+                    rv_galaxy.setLayoutManager(mLayoutManager);
+
+                    // specify an adapter (see also next example)
+                    mAdapter = new GalaxyAdapter(users.getUsers());
+                    rv_galaxy.setAdapter(mAdapter);
                 } else {
                     Toast toast = Toast.makeText(getApplicationContext(), "Erreur de connexion", Toast.LENGTH_SHORT);
                     toast.show();

@@ -69,7 +69,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/building_level"
-                                android:text="0"
+                                android:text="@{String.valueOf(ship.life)}"
                                 android:layout_marginStart="10dp" />
                         </LinearLayout>
 
@@ -88,7 +88,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/building_gas"
-                                android:text="0"
+                                android:text="@{String.valueOf(ship.gasCost)}"
                                 android:layout_marginStart="10dp" />
                         </LinearLayout>
 
@@ -106,7 +106,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/building_materials"
-                                android:text="0"
+                                android:text="@{String.valueOf(ship.mineralCost)}"
                                 android:layout_marginStart="10dp" />
                         </LinearLayout>
 
@@ -127,13 +127,13 @@
                             <ImageView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
-                                android:src="@drawable/ic_effect" />
+                                android:src="@drawable/ic_heart" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/building_effect"
-                                android:text="0"
+                                android:text="@{String.valueOf(ship.life)}"
                                 android:layout_marginStart="10dp" />
                         </LinearLayout>
 
@@ -152,7 +152,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/building_construction_time"
-                                android:text="0"
+                                android:text="@{String.valueOf(ship.timeToBuild)}"
                                 android:layout_marginStart="10dp" />
                         </LinearLayout>
 
