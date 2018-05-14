@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.dupuy.remi.outerspacemanager.GalaxyActivity"
     android:orientation="vertical">
 
+
+
+
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/linearUsername"
         android:padding="16dp"
         android:orientation="horizontal">
 
@@ -27,13 +32,25 @@
         android:id="@+id/lv_attack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/linearUsername"
         android:dividerHeight="0dp"
         android:divider="#00000000"/>
 
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_attack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_sword"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="16dp" />
 
 
 
 
     <include layout="@layout/bottom_sheet_ship"/>
 
-</LinearLayout>
+</RelativeLayout>

@@ -16,6 +16,7 @@ import com.dupuy.remi.outerspacemanager.AttackActivity;
 import com.dupuy.remi.outerspacemanager.R;
 import com.dupuy.remi.outerspacemanager.adapters.ShipAdapter;
 import com.dupuy.remi.outerspacemanager.adapters.ShipAttackAdapter;
+import com.dupuy.remi.outerspacemanager.models.Fleet;
 import com.dupuy.remi.outerspacemanager.service.OuterSpaceManagerInterface;
 import com.dupuy.remi.outerspacemanager.models.helpers.SharedPreferencesHelper;
 import com.dupuy.remi.outerspacemanager.models.ListingShips;
@@ -51,18 +52,18 @@ public class AttackBottomDialogFragment extends BottomSheetDialogFragment {
                 false);
 
         OuterSpaceManagerInterface service = WrapperCall.initialization();
-        Call<ListingShips> request = service.getShips(SharedPreferencesHelper.getPrefsName(getContext(), "token", null));
-        request.enqueue(new Callback<ListingShips>(){
+        Call<Fleet> request = service.getFleetUser(SharedPreferencesHelper.getPrefsName(getContext(), "token", null));
+        request.enqueue(new Callback<Fleet>(){
 
             @Override
-            public void onResponse(Call<ListingShips> call, retrofit2.Response<ListingShips> response) {
+            public void onResponse(Call<Fleet> call, retrofit2.Response<Fleet> response) {
 
                 if(response.code() == 200) {
 
                     progressLoader = view.findViewById(R.id.progress_loader);
                     progressLoader.setVisibility(View.INVISIBLE);
 
-                    ListingShips ships = response.body();
+                    Fleet ships = response.body();
                     ListView lvShipAdd = (ListView)view.findViewById(R.id.lv_attack_ships);
                     lvShipAdd.setAdapter(new ShipAttackAdapter((AppCompatActivity)getActivity(), ships.getShips(), (AttackActivity)getActivity(), ((AttackActivity) getActivity()).listShips));
                 } else {

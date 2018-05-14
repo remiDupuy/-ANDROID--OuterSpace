@@ -7,13 +7,13 @@ import java.util.List;
  */
 
 public class ListingShipsSend {
-    private List<ShipSend> ships;
+    private List<ShipAttack> ships;
 
-    public List<ShipSend> getShips() {
+    public List<ShipAttack> getShips() {
         return ships;
     }
 
-    public void setShips(List<ShipSend> ships) {
+    public void setShips(List<ShipAttack> ships) {
         this.ships = ships;
     }
 }

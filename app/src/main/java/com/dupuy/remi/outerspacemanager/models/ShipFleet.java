@@ -119,5 +119,6 @@ public class ShipFleet {
     public void setTimeToBuild(Integer timeToBuild) {
         this.timeToBuild = timeToBuild;
     }
+
 }
 

@@ -22,6 +22,7 @@ import com.dupuy.remi.outerspacemanager.AttackActivity;
 import com.dupuy.remi.outerspacemanager.databinding.ShipAttackAdapterBinding;
 import com.dupuy.remi.outerspacemanager.fragments.AttackBottomDialogFragment;
 import com.dupuy.remi.outerspacemanager.interfaces.OnShipAdded;
+import com.dupuy.remi.outerspacemanager.models.ShipFleet;
 import com.dupuy.remi.outerspacemanager.service.OuterSpaceManagerInterface;
 import com.dupuy.remi.outerspacemanager.models.helpers.SharedPreferencesHelper;
 import com.dupuy.remi.outerspacemanager.models.Ship;
@@ -45,15 +46,16 @@ import retrofit2.Callback;
  * Created by lledent on 23/01/2018.
  */
 
-public class ShipAttackAdapter extends ArrayAdapter<Ship> {
+public class ShipAttackAdapter extends ArrayAdapter<ShipFleet> {
     private final Context context;
-    private final List<Ship> values;
+    private final List<ShipFleet> values;
     private final OnShipAdded onShipAdded;
     private ImageButton btnAddShip;
 
-    private List<Ship> shipAdded;
+    private List<ShipFleet> shipAdded;
+    private IndicatorSeekBar ship_quantity;
 
-    public ShipAttackAdapter(AppCompatActivity context, List<Ship> values, OnShipAdded onShipAdded, List<Ship> shipAdded) {
+    public ShipAttackAdapter(AppCompatActivity context, List<ShipFleet> values, OnShipAdded onShipAdded, List<ShipFleet> shipAdded) {
         super(context, R.layout.ship_attack_adapter, values);
         this.context = context;
         this.values = values;
