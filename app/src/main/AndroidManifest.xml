@@ -44,6 +44,7 @@
             android:theme="@style/AppTheme"></activity>
         <activity android:name=".SearchesActivity" />
         <activity android:name=".SearchesDetailActivity" />
+        <activity android:name=".AttackActivity" />
     </application>
 
 </manifest>

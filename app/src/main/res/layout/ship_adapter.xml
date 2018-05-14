@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
-        <variable name="ship" type="com.dupuy.remi.outerspacemanager.Models.Ship"/>
-        <variable name="shipCreate" type="com.dupuy.remi.outerspacemanager.Models.ShipCreate"/>
+        <variable name="ship" type="com.dupuy.remi.outerspacemanager.models.Ship"/>
+        <variable name="shipCreate" type="com.dupuy.remi.outerspacemanager.models.ShipCreate"/>
     </data>
 
     <LinearLayout
@@ -70,14 +71,16 @@
                                 android:layout_height="wrap_content"
                                 android:id="@+id/building_level"
                                 android:text="@{String.valueOf(ship.life)}"
-                                android:layout_marginStart="10dp" />
+                                android:layout_marginStart="10dp"
+                                app:ignore="RtlCompat" />
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="40dp"
-                            android:gravity="center">
+                            android:gravity="center"
+                            app:ignore="RtlCompat">
 
                             <ImageView
                                 android:layout_width="40dp"
@@ -89,7 +92,8 @@
                                 android:layout_height="wrap_content"
                                 android:id="@+id/building_gas"
                                 android:text="@{String.valueOf(ship.gasCost)}"
-                                android:layout_marginStart="10dp" />
+                                android:layout_marginStart="10dp"
+                                app:ignore="RtlCompat" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -107,7 +111,8 @@
                                 android:layout_height="wrap_content"
                                 android:id="@+id/building_materials"
                                 android:text="@{String.valueOf(ship.mineralCost)}"
-                                android:layout_marginStart="10dp" />
+                                android:layout_marginStart="10dp"
+                                app:ignore="RtlCompat" />
                         </LinearLayout>
 
 
@@ -122,7 +127,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="40dp"
-                            android:gravity="center">
+                            android:gravity="center"
+                            app:ignore="RtlCompat">
 
                             <ImageView
                                 android:layout_width="40dp"

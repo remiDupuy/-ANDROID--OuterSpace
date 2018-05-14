@@ -8,15 +8,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dupuy.remi.outerspacemanager.Adapters.BuildingAdapter;
-import com.dupuy.remi.outerspacemanager.Interface.OuterSpaceManagerInterface;
-import com.dupuy.remi.outerspacemanager.Models.Building;
-import com.dupuy.remi.outerspacemanager.Models.Helpers.SharedPreferencesHelper;
-import com.dupuy.remi.outerspacemanager.Models.ListingBuildings;
-import com.dupuy.remi.outerspacemanager.Models.WrapperCall;
+import com.dupuy.remi.outerspacemanager.adapters.BuildingAdapter;
+import com.dupuy.remi.outerspacemanager.service.OuterSpaceManagerInterface;
+import com.dupuy.remi.outerspacemanager.models.Building;
+import com.dupuy.remi.outerspacemanager.models.helpers.SharedPreferencesHelper;
+import com.dupuy.remi.outerspacemanager.models.ListingBuildings;
+import com.dupuy.remi.outerspacemanager.models.WrapperCall;
 import com.google.gson.Gson;
 
 import java.util.List;

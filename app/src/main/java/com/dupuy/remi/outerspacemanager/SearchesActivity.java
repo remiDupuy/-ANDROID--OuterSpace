@@ -1,37 +1,16 @@
 package com.dupuy.remi.outerspacemanager;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.dupuy.remi.outerspacemanager.Adapters.ShipAdapter;
-import com.dupuy.remi.outerspacemanager.Fragments.FragmentDetailSearches;
-import com.dupuy.remi.outerspacemanager.Fragments.FragmentListingSearches;
-import com.dupuy.remi.outerspacemanager.Fragments.OnFragmentInteractionListener;
-import com.dupuy.remi.outerspacemanager.Interface.OuterSpaceManagerInterface;
-import com.dupuy.remi.outerspacemanager.Models.Helpers.SharedPreferencesHelper;
-import com.dupuy.remi.outerspacemanager.Models.ListingSearches;
-import com.dupuy.remi.outerspacemanager.Models.ListingShips;
-import com.dupuy.remi.outerspacemanager.Models.Search;
-import com.dupuy.remi.outerspacemanager.Models.WrapperCall;
+import com.dupuy.remi.outerspacemanager.fragments.FragmentDetailSearches;
+import com.dupuy.remi.outerspacemanager.fragments.FragmentListingSearches;
+import com.dupuy.remi.outerspacemanager.fragments.OnFragmentInteractionListener;
 import com.google.gson.Gson;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
 
 public class SearchesActivity extends AppCompatActivity implements OnFragmentInteractionListener {
 

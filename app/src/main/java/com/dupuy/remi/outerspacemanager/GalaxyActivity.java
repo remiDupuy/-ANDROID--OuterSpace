@@ -1,30 +1,20 @@
 package com.dupuy.remi.outerspacemanager;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dupuy.remi.outerspacemanager.Adapters.GalaxyAdapter;
-import com.dupuy.remi.outerspacemanager.Adapters.ShipAdapter;
-import com.dupuy.remi.outerspacemanager.Interface.OuterSpaceManagerInterface;
-import com.dupuy.remi.outerspacemanager.Models.Fleet;
-import com.dupuy.remi.outerspacemanager.Models.Helpers.SharedPreferencesHelper;
-import com.dupuy.remi.outerspacemanager.Models.ListingUsers;
-import com.dupuy.remi.outerspacemanager.Models.Ship;
-import com.dupuy.remi.outerspacemanager.Models.User;
-import com.dupuy.remi.outerspacemanager.Models.WrapperCall;
-
-import java.util.List;
+import com.dupuy.remi.outerspacemanager.adapters.GalaxyAdapter;
+import com.dupuy.remi.outerspacemanager.service.OuterSpaceManagerInterface;
+import com.dupuy.remi.outerspacemanager.models.helpers.SharedPreferencesHelper;
+import com.dupuy.remi.outerspacemanager.models.ListingUsers;
+import com.dupuy.remi.outerspacemanager.models.WrapperCall;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -63,7 +53,7 @@ public class GalaxyActivity extends AppCompatActivity {
                     rv_galaxy.setLayoutManager(mLayoutManager);
 
                     // specify an adapter (see also next example)
-                    mAdapter = new GalaxyAdapter(users.getUsers());
+                    mAdapter = new GalaxyAdapter(users.getUsers(), GalaxyActivity.this);
                     rv_galaxy.setAdapter(mAdapter);
                 } else {
                     Toast toast = Toast.makeText(getApplicationContext(), "Erreur de connexion", Toast.LENGTH_SHORT);

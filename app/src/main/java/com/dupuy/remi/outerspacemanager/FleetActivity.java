@@ -1,10 +1,7 @@
 package com.dupuy.remi.outerspacemanager;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,16 +10,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dupuy.remi.outerspacemanager.Adapters.BuildingAdapter;
-import com.dupuy.remi.outerspacemanager.Adapters.FleetAdapter;
-import com.dupuy.remi.outerspacemanager.Adapters.ShipAdapter;
-import com.dupuy.remi.outerspacemanager.Interface.OuterSpaceManagerInterface;
-import com.dupuy.remi.outerspacemanager.Models.Fleet;
-import com.dupuy.remi.outerspacemanager.Models.Helpers.SharedPreferencesHelper;
-import com.dupuy.remi.outerspacemanager.Models.ListingBuildings;
-import com.dupuy.remi.outerspacemanager.Models.Ship;
-import com.dupuy.remi.outerspacemanager.Models.ShipFleet;
-import com.dupuy.remi.outerspacemanager.Models.WrapperCall;
+import com.dupuy.remi.outerspacemanager.adapters.FleetAdapter;
+import com.dupuy.remi.outerspacemanager.service.OuterSpaceManagerInterface;
+import com.dupuy.remi.outerspacemanager.models.Fleet;
+import com.dupuy.remi.outerspacemanager.models.helpers.SharedPreferencesHelper;
+import com.dupuy.remi.outerspacemanager.models.ShipFleet;
+import com.dupuy.remi.outerspacemanager.models.WrapperCall;
 
 import java.util.List;
 

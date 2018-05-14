@@ -2,20 +2,11 @@ package com.dupuy.remi.outerspacemanager;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.OrientationEventListener;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.Toast;
 
-import com.dupuy.remi.outerspacemanager.Fragments.FragmentDetailSearches;
-import com.dupuy.remi.outerspacemanager.Fragments.FragmentListingSearches;
-import com.dupuy.remi.outerspacemanager.Models.Building;
-import com.dupuy.remi.outerspacemanager.Models.Search;
-import com.google.gson.Gson;
+import com.dupuy.remi.outerspacemanager.fragments.FragmentDetailSearches;
 
 public class SearchesDetailActivity extends AppCompatActivity{
 

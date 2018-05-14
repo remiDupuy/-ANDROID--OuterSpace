@@ -1,28 +1,19 @@
 package com.dupuy.remi.outerspacemanager;
 
 import android.os.Bundle;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dupuy.remi.outerspacemanager.Adapters.GalaxyAdapter;
-import com.dupuy.remi.outerspacemanager.Adapters.ShipAdapter;
-import com.dupuy.remi.outerspacemanager.Interface.OuterSpaceManagerInterface;
-import com.dupuy.remi.outerspacemanager.Models.Helpers.SharedPreferencesHelper;
-import com.dupuy.remi.outerspacemanager.Models.ListingShips;
-import com.dupuy.remi.outerspacemanager.Models.ListingUsers;
-import com.dupuy.remi.outerspacemanager.Models.WrapperCall;
+import com.dupuy.remi.outerspacemanager.adapters.ShipAdapter;
+import com.dupuy.remi.outerspacemanager.service.OuterSpaceManagerInterface;
+import com.dupuy.remi.outerspacemanager.models.helpers.SharedPreferencesHelper;
+import com.dupuy.remi.outerspacemanager.models.ListingShips;
+import com.dupuy.remi.outerspacemanager.models.WrapperCall;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 
 import retrofit2.Call;
@@ -59,13 +50,6 @@ public class ShipsActivity extends AppCompatActivity{
                     TextView emptyText = (TextView)findViewById(R.id.empty_galaxy);
                     lv_ships.setEmptyView(emptyText);
                     lv_ships.setAdapter(new ShipAdapter(ShipsActivity.this, ships.getShips()));
-                    lv_ships.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            bottomSheet = findViewById(R.id.bottom_sheet_ship);
-                            bottomSheet.showWithSheetView(LayoutInflater.from(ShipsActivity.this).inflate(R.layout.bottom_sheet_ship, bottomSheet, false));
-                        }
-                    });
                 } else {
                     Toast toast = Toast.makeText(getApplicationContext(), "Erreur de connexion", Toast.LENGTH_SHORT);
                     toast.show();

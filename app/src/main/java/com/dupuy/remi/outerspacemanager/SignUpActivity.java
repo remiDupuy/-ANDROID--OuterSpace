@@ -9,11 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.dupuy.remi.outerspacemanager.Interface.OuterSpaceManagerInterface;
-import com.dupuy.remi.outerspacemanager.Models.Helpers.SharedPreferencesHelper;
-import com.dupuy.remi.outerspacemanager.Models.Responses.Response;
-import com.dupuy.remi.outerspacemanager.Models.User;
-import com.dupuy.remi.outerspacemanager.Models.WrapperCall;
+import com.dupuy.remi.outerspacemanager.service.OuterSpaceManagerInterface;
+import com.dupuy.remi.outerspacemanager.models.helpers.SharedPreferencesHelper;
+import com.dupuy.remi.outerspacemanager.models.responses.Response;
+import com.dupuy.remi.outerspacemanager.models.User;
+import com.dupuy.remi.outerspacemanager.models.WrapperCall;
 
 import retrofit2.Call;
 import retrofit2.Callback;

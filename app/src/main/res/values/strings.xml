@@ -20,4 +20,12 @@
     <string name="upgrade">Upgrade</string>
     <string name="research">Research</string>
     <string name="create">Create</string>
+    <string name="add_a_new_ship">Add a new ship</string>
+    <string name="attack_user">Attack user : %1$s</string>
+    <string name="bottom_sheet_option_camera">Use Camera</string>
+    <string name="bottom_sheet_option_gallery">Upload from Gallery</string>
+    <string name="bottom_sheet_option_heading">Add Photo</string>
+    <string name="bottom_sheet_option_remove_photo">Remove Photo</string>
+    <string name="add">Add</string>
+
 </resources>
